@@ -1,0 +1,22 @@
+application: things-indifferent
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+
+handlers:
+# All URLs beginning with /stylesheets are treated as paths to static files in
+# the stylesheets/ directory. Note that static_dir handlers do not use a
+# regular expression for the URL pattern, only a prefix.
+- url: /static
+  static_dir: static
+- url: /.*
+  script: things-indifferent.application
+
+
+libraries:                                                                      
+- name: jinja2                                                                  
+  version: latest                                                               
+- name: markupsafe                                                              
+  version: latest

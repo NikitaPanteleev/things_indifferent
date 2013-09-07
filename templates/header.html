@@ -47,7 +47,7 @@
             </p>
             <ul class="nav">
               {% for item in HeaderMenu %}
-                <li><a href="{{ item.href }}">{{ item.name|capitalize }}</a></li>
+                <li {%if item [1] == ActiveHeaderItem%} class= "active" {%endif%}><a href="{{ item.href }}">{{ item.name|capitalize }}</a></li>
               {% endfor %}
                             
             </ul>

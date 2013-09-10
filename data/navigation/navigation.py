@@ -5,10 +5,8 @@ from collections import namedtuple
 MenuItem = namedtuple('HeaderItem',['href','name'])
 
 #header menu - the top menu, it's allmost everywhere on the site
-HeaderMenu = (MenuItem ('/', 'home'),
-			  MenuItem ('/','experimental'),
-			  MenuItem('/blog','blog'),
-
+HeaderMenu = (MenuItem ('/community/lastWords/blog', 'Development'),
+			  MenuItem('/community/all/blog','All Posts'),
 	)
 HeaderParameters = dict(title = "Stoicism 2.0",
                          HeaderMenu = HeaderMenu,

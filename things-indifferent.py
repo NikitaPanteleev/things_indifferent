@@ -9,7 +9,7 @@ no  - user profiles (they are made according ot gamifacation theory)
 no  - course creator and course catalog
 """
 __author__ = 'Nikita Panteleev'
-__version__ = '1.02'
+__version__ = '1.04'
 __license__ = 'MIT'
 
 import os
@@ -38,33 +38,35 @@ from lib.auth import Logout
 class MainPage (bloghandler.BlogHandler):
     def get (self):
         self.render ('base.html',simple_text = "Things indifferent. Use it. Learn it. Love it.",
-                                
+                                title = "Lluvioso Septiembre"
                                 )
 
 
 class Welcome(bloghandler.BlogHandler):
     def get(self):
         if self.user:
-            self.render('base.html', simple_text = "Welcome, %s!"%(self.user.name))
+            self.render('base.html', simple_text = "Welcome, %s!"%(self.user.name),
+                                     title = "Things indifferrent",)
         else:
             self.redirect('/signup')
 
 class Profile(bloghandler.BlogHandler):
-    def get (self):
-        self.render ("base.html", simple_text = "Under development as you could guess!"
-                        
+    def get (self,user):
+        self.render ("profile.html", user = user,
+                                  title = "Things indifferrent",
                         )
 application = webapp2.WSGIApplication(
     [('/', MainPage),
-    ('/blog/?(?:.json)?', BlogFront),
-    ('/blog/([0-9]+)(?:.json)?', PostPage),
-    ('/blog/newpost', NewPost),
-    ('/signup', Register),
-    ('/login', Login),
-    ('/logout', Logout),
-    ('/welcome', Welcome),
-    ('/profile', Profile),
-   
+    ('/home/?', MainPage),
+    ('/community/(\w+)/post/([0-9]+)(?:.json)?/?', PostPage),
+    ('/community/(\w+)(?:/blog)?(?:.json)?/?',BlogFront),
+    ('/community/(\w+)(?:/profile)/?',Profile),
+    ('/community/blog/newpost/?', NewPost),
+    ('/signup/?', Register),
+    ('/login/?', Login),
+    ('/logout/?', Logout),
+    ('/welcome/?', Welcome),
+
     ],
     debug=True)
 

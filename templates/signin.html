@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="container">
+      
+      <form class="form-signin" method="post" action = "/login">
+        <p><h4 class = "error">{{error}}</h4></p>
+        <h2 class="form-signin-heading">Sign in</h2>
+        
+        <input type="text" class="form-control" placeholder="Name" autofocus="" name="username" value="{{username}}">
+        <h4 class = "error">{{error_username}}</h4>
+        <input type="password" class="form-control" placeholder="Password" autofocus="" name="password" value="">
+        <h4 class = "error">{{error_password}}</h4>
+       
+        <label class="checkbox">
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+        
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+      
+
+
+    </div> <!-- /container -->
+{%endblock%}

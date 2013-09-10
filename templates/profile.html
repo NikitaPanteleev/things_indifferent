@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class = "blog">
+  <h1>{{user.name|capitalize}}' Profile</h1><br>
+  <div style = "margin-left:10%">
+    <b>Registered:</b> <i>{{user.registered}}</i>
+    {%set blog_url = "/community/"+user.name+"/blog" %}
+    <h2><a href = {{blog_url}}>{{user.name|capitalize}}' blog</a></h2>
+
+  </div>
+</div>
+
+{% endblock %}

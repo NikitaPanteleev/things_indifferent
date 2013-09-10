@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>new post</h2>
+    {%if error%}
+    	<div class = "error">{{error}} </div>
+    {% endif %}
+
+  	<form method="post">
+      <div><strong>Subject</strong></div>
+      <div><input type="text" name="subject" value="{{subject}}" placeholder="Subject" class = "newpost-title"></div>
+      <div><strong>Post</strong></div>
+      <div><textarea name="content" rows="15" class = "newpost-content">{{content}}</textarea></div>
+      <input type="submit" class="btn">
+  	</form>
+    <br><br>
+    <div>
+      <i>Tips:</i><br>
+      You can use &ltb&gt<b>bold</b>&lt/b&gt or
+      &lti&gt<i>italic</i>&lt/i&gt fonts. If you want to add link then just copy it and check that it starts from http:.
+    </div>
+{% endblock %}

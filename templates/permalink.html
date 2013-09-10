@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <div class="post">
+    {{p.render()|safe}}
+  </div>
+  <p style = "color: #707000;border-top: 1px dotted #707000; font-size:1.5em;">Comments:</p>
+  <br>
+  <div class = "comment">
+    {% for c in comments %}
+      {{c.render()|safe}}
+    {% endfor %}
+  </div>
+
+  <form method="post">
+    <div><strong>Add comment</strong></div>
+      <div><textarea name="comment" rows="5" class = "newpost-content">{{comment}}</textarea></div>
+      <input type="submit" class="btn">
+  </form>
+  <br>
+  <div class = "error">{{error}}</div>
+{% endblock %}

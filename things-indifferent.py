@@ -9,7 +9,7 @@ no  - user profiles (they are made according ot gamifacation theory)
 no  - course creator and course catalog
 """
 __author__ = 'Nikita Panteleev'
-__version__ = '1.04'
+__version__ = '1.05'
 __license__ = 'MIT'
 
 import os

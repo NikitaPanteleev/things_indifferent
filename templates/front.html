@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div><h1>{{title}}</h1></div>
+
+<div id="blog">
+  {% for p in posts %}
+    <div class="post">
+	  {{ p.render()|safe }}
+	<div class="post-bottom">
+	    <div class="post-readmore">
+	      {%set author_url = "/community/"+p.author.name+"/profile"%}
+	      <a href = {{author_url}}>{{p.author.name}} </a>|
+	      <a href = {{p.permanent_link}}>Read more>> </a>
+	    </div>
+
+	    
+
+	    <div class = "post-comments"> 
+	      {%set comments = p.permanent_link +"#comments"%}
+	      <a href = {{comments}}> Comments </a>|
+	      {%set add = p.permanent_link +"#add"%}
+	      <a href = {{add}}> Add comment </a>
+	    </div>
+	</div>
+	<br>
+	<br>
+  {% endfor %}
+</div>
+{% endblock %}

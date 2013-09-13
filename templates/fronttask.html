@@ -1,0 +1,11 @@
+{% extends "coursesidebar.html" %}
+
+{% block coursecontent %}
+<div class = "span9 white">
+	{% for t in tasks %}
+	
+		{{ t.render()|safe }}
+	<div class = "delimeter"></div>
+	{%endfor%}
+</div>
+{% endblock %}

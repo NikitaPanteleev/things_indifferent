@@ -1,0 +1,121 @@
+{% extends "coursesidebar.html" %}
+
+{% block coursecontent %}
+
+	<div class="span9 white">
+	  <div class="hero-unit">
+	    <h1>Create new task</h1>
+	    
+	 <div class="row-fluid">
+	  	<form class="form-horizontal" method="post">
+	      <legend>For more info read <a href="/ftu/intro">Intro to FTU</a></legend>
+	      <div class="control-group">
+	        <label class="control-label" >Title</label>
+	        <div class="controls">
+	          <input type="text" name="ctitle" value="{{ctitle}}" id="focusedInput" placeholder="Title">
+	        </div>
+	      </div>
+	      <div class="control-group">
+	        <label class="control-label" for="inputText">Description</label>
+	        <div class="controls">
+	          <textarea name="cdesc" rows="3" id = "inputText">{{cdesc}}</textarea>
+	        </div>
+	      </div>
+	      <div class="control-group">
+		    <label class="control-label" for="inputPrivacy">Privacy</label>
+		    <div class="span2">
+		      <select name = "cprivacy" id ="inputPrivacy">
+				  <option value = "1" selected="selected">Only for me</option>
+				  <option value = "0" >For all</option>
+			  </select>
+			</div>
+		  </div>
+		  <div class="control-group">
+			    <label class="control-label" for="inputLifeArea">Life Area</label>
+			    <div class="span2">
+			      <select name = "clifearea" id ="inputLifeArea" >
+			      	<option value = "General" >------</option>
+			      	{%for option in lifearea%}
+					  <option value = "{{option}}">{{option}}</option>
+					{%endfor%}
+				  </select>
+				</div>
+		  </div>
+
+		  <div class="control-group">
+		  	  <label class="control-label" for="inputLifeArea">Difficulty</label>
+		  	  <div class="span2">
+			    	<div class="radio">
+					  <label>
+					    <input type="radio" name="cdiff" id="optionsRadios" value="1" checked>
+					    Normal
+					  </label>
+					</div>
+					<div class="radio">
+					  <label>
+					    <input type="radio" name="cdiff" id="optionsRadios" value="2">
+					    Difficult
+					  </label>
+					</div>
+				</div>
+
+		   </div>
+		   <div class="control-group">
+		        <label class="control-label" for="inputTime">Expected time<br> (in mins)</label>
+		        <div class="span4">
+		        	<div class="radio-inline">
+					  <label>
+					    <input type="radio" name="cexptime" id="optionsRadios" value="15" >
+					    15 
+					  </label>
+					</div>
+					<div class="radio-inline">
+					  <label>
+					    <input type="radio" name="cexptime" id="optionsRadios" value="30">
+					    30
+					  </label>
+					</div>
+					<div class="radio-inline">
+					  <label>
+					    <input type="radio" name="cexptime" id="optionsRadios" value="45" >
+					    45
+					  </label>
+					</div>
+					<div class="radio-inline">
+					  <label>
+					    <input type="radio" name="cexptime" id="optionsRadios" value="60">
+					    60
+					  </label>
+					</div>
+					<div class="radio-inline">
+					  <label>
+					    <input type="radio" name="cexptime" id="optionsRadios" value="" checked>
+					    Choose your time
+					  </label>
+					</div>
+				</div>
+
+
+		        <div class="span1">
+		         <input type="number" name="cchosentime" value="{{cexptime}}" id="focusedInput" placeholder="time">
+		        </div>
+	       </div>
+	       
+		  	{%if error_nt%}
+		  	<div class = "error"> WUT?{{error_nt}}</div>
+		  	{%endif%}
+		 
+	     <div class="control-group">
+	        <div class="controls">
+	          <button type="submit" class="btn">Add</button>
+	        </div>
+	      </div>
+	    </form>
+		
+
+	  </div><!--/row-->
+	
+	</div><!--/span-->
+
+
+{% endblock %}

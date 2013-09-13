@@ -1,0 +1,117 @@
+<div class = "row">
+	{%if c.condition == 10 %}
+    {%set color = "#aff4a2" %}
+    {%elif c.condition == 5%}
+    {%set color ="#a2edf4" %}
+    {%elif c.condition == 1%}
+    {%set color = "#c1b9ba" %}
+    {%elif c.condition == 0%}
+    {%set color = "#ff5b53"%}
+    {%endif%}
+	<div class = "task-header" style = "background-color:{{color}}">
+
+		{%set task_url = "/ftu/task/"~c.key().id()%}
+		<h2><a href ="{{task_url}}">{{c.title}}</a> <small><p> created  at {{c.created.strftime("%b %d, %Y")}} by {{c.author.name}}</p></small></h2>
+	</div>
+	
+	<div>
+		<div class = "row">  <div class = "span6 offset1"><p>{{c.display_privacy()|safe}}</p></div></div>
+		<div class = "row">   
+			<div class = "span4 offset1">
+				<table class="table table-hover">
+				{% if c.condition == 10%}
+				
+
+					<tr>
+						<td>
+							<form class="raw navbar-form " action = "/ftu/taskedit" method="post">
+								<button type="submit" class="btn btn-success task-button" name ="tcondition" value = "finish|{{c.key().id()}}">Finish</button>
+								<input type="number" placeholder="Name" class="span2" name = "treal" value = "{{c.expected_time}}" required>
+								<label>Time spent</label>
+							</form>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<form class="form-horizontal" method="post" action ="/ftu/taskedit">
+								<button type="submit" class="btn btn-info task-button" name ="tcondition" value = "freeze|{{c.key().id()}}">Freeze</button>
+							</form>
+						</td>
+
+					</tr>
+					<tr>
+						<td>
+							<form class="form-horizontal" method="post" action ="/ftu/taskedit">
+								<button type="submit" class="btn btn-danger task-button" name ="tcondition" value = "fail|{{c.key().id()}}">Fail</button>
+							</form>
+						</td>
+					</tr>
+
+					{%elif c.condition == 5%}
+					<tr>
+						<td>
+							<form class="raw navbar-form " action = "/ftu/taskedit" method="post">
+								<button type="submit" class="btn btn-success task-button" name ="tcondition" value = "finish|{{c.key().id()}}">Finish</button>
+								<input type="number" placeholder="Name" class="span2" name = "treal" value = "{{c.expected_time}}" required>
+								<label>Time spent</label>
+							</form>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							<form class="form-horizontal" method="post" action ="/ftu/taskedit">
+								<button type="submit" class="btn btn-danger task-button" name ="tcondition" value = "fail|{{c.key().id()}}">Fail</button>
+							</form>
+						</td>
+					</tr>
+					
+
+					The task is frozen!
+					{%elif c.condition == 1%}
+					<tr><td><span class="glyphicon glyphicon-check"> The task is done!</td></tr>
+					<tr><td><span class="glyphicon glyphicon-time"> Time expected</td><td>{{c.expected_time}}</td></tr>
+					<tr><td><span class="glyphicon glyphicon-time"> Time spent</td><td>{{c.real_time}}</td></tr>
+					<tr><td><span class="glyphicon glyphicon-certificate"> Experience </td><td>{{c.exp}}</span></td></tr>
+					<tr>
+						<td>
+							<form class="form-horizontal" method="post" action ="/ftu/taskedit">
+								<button type="submit" class="btn btn-primary task-button" name ="trepeat" value = "{{c.key().id()}}">Repeat</button>
+							</form>
+						</td>
+					</tr>
+					{%elif c.condition == 0%}
+					<tr><td>
+						<form class="form-horizontal" method="post" action ="/ftu/taskedit">
+								<button type="submit" class="btn btn-warning task-button" name ="tresume" value = "{{c.key().id()}}">Resume</button>
+						</form>
+					</tr></td>
+					The task is failed!
+					{%endif%}
+				</table>
+
+
+				</div>
+				<div class = "span4">
+					<p class = "lead">{{c.description}} </p>
+				</div>
+				<div class = "span3">
+					<table class="table table-hover">
+						<tr>
+							<td>Difficultry</td>
+							<td>{{c.difficulty}}</td>
+						</tr>
+						<tr>
+							<td>Life area:</td>
+							<td>{{c.lifearea}}</td>
+						</tr>
+						<tr>
+							<td>Expected time:</td>
+							<td>{{c.expected_time}} </td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+

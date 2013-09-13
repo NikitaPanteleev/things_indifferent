@@ -1,14 +1,15 @@
-<div class="post-heading">
-  <div class="post-title">
-    {{p.subject|safe}}
-  </div>
-
-  <div class="post-date">
-    {{p.created.strftime("%b %d, %Y")}}
-  </div>
+<div class = "row post-subject">
+	<div class = "span6">
+	<h5><strong>{{p.subject|safe}}</strong></h5>
+	</div>
+	
+	<div class = "span2 offset4">
+		<h5><strong>{{p.author.render()|safe}}</strong></h5>
+	</div>
 </div>
-
-<div class="post-content">
-  {{p.content|safe}}
+<div class="row post-content">
+ 
+  <p>{{p.content|safe}}</p>
 </div>
+<p class="text-right"><i> {{p.created.strftime("%b %d, %Y")}}</i></p>
 <br><br>

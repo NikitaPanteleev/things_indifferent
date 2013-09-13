@@ -1,22 +1,42 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>new post</h2>
-    {%if error%}
-    	<div class = "error">{{error}} </div>
+<div class="span2">
+  <div class="well sidebar-nav">
+     <ul class="nav nav-list">
+        <li class="nav-header">Tips:</li>
+      </ul>
+      <li> Use &ltb&gt<b>text</b>&lt/b&gt for <b>bold</b></li>
+      <li> Use &lti&gt<i>text</i>&lt/i&gt for <i>italic</i></li>
+      <li> Insert url links</li>
+    </li>
+  </div>
+</div>
+<div class="span8 white">
+    
+    {%if error_blog%}
+    	<div class = "raw error">{{error_blog}} </div>
     {% endif %}
+    <form class="form-horizontal" method="post">
+      <legend>New post</legend>
+      <div class="control-group">
+        <label class="control-label" >Title</label>
+        <div class="controls">
+          <input type="text" name="subject" value="{{subject}}" placeholder="Subject" id="focusedInput" placeholder="Title">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputText">Post</label>
+        <div class="controls">
+          <textarea name="content" rows="15" id = "inputText">{{content}}</textarea>
+        </div>
+      </div>
+      <div class="control-group">
+        <div class="controls">
+          <button type="submit" class="btn">Post</button>
+        </div>
+      </div>
+    </form>
+</div>
 
-  	<form method="post">
-      <div><strong>Subject</strong></div>
-      <div><input type="text" name="subject" value="{{subject}}" placeholder="Subject" class = "newpost-title"></div>
-      <div><strong>Post</strong></div>
-      <div><textarea name="content" rows="15" class = "newpost-content">{{content}}</textarea></div>
-      <input type="submit" class="btn">
-  	</form>
-    <br><br>
-    <div>
-      <i>Tips:</i><br>
-      You can use &ltb&gt<b>bold</b>&lt/b&gt or
-      &lti&gt<i>italic</i>&lt/i&gt fonts. If you want to add link then just copy it and check that it starts from http:.
-    </div>
 {% endblock %}

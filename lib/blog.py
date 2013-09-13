@@ -2,23 +2,15 @@
 # -*- coding: utf-8 -*-
 from google.appengine.ext import db
 from lib.safe_input import input_to_safe_html
-from lib.safe_input import input_to_extanded_safe_html
+from lib.safe_input import input_to_extended_safe_html
 import lib.bloghandler as bloghandler
 import db.post as db_post
 import db.user as db_user
 import db.comment as db_comment
 
 SUBJECTLEN = 40
-
-"""
-def render_post(response, post):
-    response.out.write('<b>' + post.subject + '</b><br>')
-    response.out.write(post.content)
-"""
 class BlogFront(bloghandler.BlogHandler):
     def get(self, user):
-        #self.render ('base.html',simple_text = "This is the blog of %s"%user)
-        #str to instance object. Be carefull here
         if user == "all":
             posts = db_post.Post.all().order('-created')
             if self.format == 'html':
@@ -36,15 +28,9 @@ class BlogFront(bloghandler.BlogHandler):
                 else:
                     return self.render_json([p.as_dict() for p in posts])
             else:
-                self.render ('base.html',error_text = "There is no such user.")
+                self.render ('base.html',error = "There is no such user.")
 
 class NewPost(bloghandler.BlogHandler):
-    """
-        This class renders "newpost.html" template where user can input subject and content of a new post.
-        If they both are presented, they are instantly encodered to safe html by means of
-        input_to_safe_html() from lib.safe_input ( it replaces '<' by u'&lt' but allows some simple
-        html tags). If content or subject are not presented it render "newpost.html" again.
-    """
     def get(self):
         if self.user:
             self.render("newpost.html", title = "Things indifferrent",)
@@ -55,15 +41,15 @@ class NewPost(bloghandler.BlogHandler):
 
     def post(self):
         if not self.user:
-            self.redirect('/blog')
+            self.redirect('/login')
 
         subject = self.request.get('subject') [:SUBJECTLEN]
         content = self.request.get('content')
 
         if subject and content:
             subject = input_to_safe_html(subject)
-            content = input_to_extanded_safe_html(content)
-            p = db_post.Post(parent = self.user, subject = subject, content = content, 
+            content = input_to_extended_safe_html(content)
+            p = db_post.Post(parent = db_post.blog_key(), subject = subject, content = content, 
                              author = self.user)
             p.put()
             p.permanent_link = '/community/%s/post/%s' % (str(self.user.name),str(p.key().id()))
@@ -73,42 +59,44 @@ class NewPost(bloghandler.BlogHandler):
             self.redirect(p.permanent_link)
         else:
             error = "subject and content, please!"
-            self.render("newpost.html", subject=subject, content=content, error=error,
+            self.render("newpost.html", subject=subject, content=content, error_blog=error,
                         title = "Things indifferrent",)
 
 class PostPage(bloghandler.BlogHandler):
-  
     def get(self, OP, post_id):
         OP = db_user.User.by_name(OP)
-        key = db.Key.from_path('Post', int(post_id), parent=OP.key())
-        post = db.get(key)
-        #post = db_post.Post.all().filter("subject =","top").get()
-               
-        if not post:
-            self.error(404)
+        post = db_post.Post.by_id(int(post_id))
+        if (not post or not OP):
+            self.render ("base.html", error = "There is no such user or post",
+                                  title = "Things indifferrent",
+                        )
             return
         if self.format == 'html':
-            comments = db_comment.Comment.all().ancestor(post).order('-created')
+            #-----------------------------------
+            comments = db_comment.Comment.all().filter("post = ", post.key()).order('created')
+            #-----------------------------------
             self.render("permalink.html", p = post, comments = comments, title = "Things indifferrent")
         else:
             return self.render_json(post.as_dict())
             
     def post(self,OP,post_id):
         OP = db_user.User.by_name(OP)
-        key = db.Key.from_path('Post', int(post_id), parent=OP.key())
-        post = db.get(key)
-        
+        post = db_post.Post.by_id(int(post_id))
+
         if not self.user:
-            self.redirect('/blog')
+            self.redirect('/login')
+            return
+
 
         comment = self.request.get('comment')
-        comments = db_comment.Comment.all().ancestor(post).order('-created')
         if comment:
-            comment = input_to_extanded_safe_html(comment)
+            comment = input_to_extended_safe_html(comment)
             
-            c = db_comment.Comment(parent = post, content = comment, 
+            c = db_comment.Comment(parent = db_comment.comment_key(), content = comment, 
                              author = self.user.key(), post = post.key())
             c.put()
+            post.number_of_comments+=1
+            post.put()
             self.redirect(post.permanent_link)
         else:
             error = "No content!"

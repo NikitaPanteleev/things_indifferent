@@ -1,0 +1,139 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+/***************UDACITY TEMPLATE!!!*/
+ #blog {
+    display:block;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    width: 800px;
+    word-wrap:break-word;
+    margin: 0 auto;
+    padding: 10px;
+    color: #333;
+}
+.error {
+    color: red;
+}
+/*Newpost style*/
+.newpost-title{
+  width: 25%;
+}
+.newpost-content{
+    width: 50%;
+    max-width: 50%;
+}
+/*------------*/
+
+.main-title {
+    display: block;
+    color: #222;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+    text-decoration: none;
+}
+
+.post + .post {
+    margin-top: 15px;
+}
+
+.post-heading {
+    position: relative;
+    border-bottom: 3px solid #666;
+}
+
+.post-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.post-date {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    color: #999;
+
+}
+.post-bottom {
+    position: relative;
+    border-top: 3px dotted #666;
+}
+.post-readmore{
+  font-size: 16px;
+  font-weight: bold;
+  color:#666;
+}
+
+.post-comments {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  color: green;
+}
+
+.post-content {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+/*Comments*/
+.comment {
+
+}
+.comment-author {
+    font-weight: bold;
+}
+
+.comment-heading {
+    position: relative;
+    border-bottom: 2px dotted #707000;
+}
+.comment-content{
+margin-left: 10%;
+}
+.comment-date {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    color: #999;
+
+}
+/*******THE END OF UDACITY TEMPLATE*/
+.btn-signup {
+  color: #ffffff;
+  background-color: #3366FF;
+  border-color: #003DF5;
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  font-size: 16px;
+  height: auto;
+  padding: 10px;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+
+.error {
+    color: red;
+}

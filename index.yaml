@@ -11,7 +11,77 @@ indexes:
 # your application using appcfg.py.
 
 - kind: Comment
+  properties:
+  - name: post
+  - name: created
+
+- kind: Comment
+  properties:
+  - name: post
+  - name: created
+    direction: desc
+
+- kind: Comment
+  properties:
+  - name: post_id
+  - name: created
+    direction: desc
+
+- kind: Comment
   ancestor: yes
   properties:
   - name: created
+    direction: desc
+
+- kind: Task
+  properties:
+  - name: author
+  - name: condition
+  - name: created
+    direction: desc
+
+- kind: Task
+  properties:
+  - name: author
+  - name: condition
+  - name: modified
+    direction: desc
+
+- kind: Task
+  properties:
+  - name: author
+  - name: condition
+  - name: privacy
+  - name: created
+    direction: desc
+
+- kind: Task
+  properties:
+  - name: author
+  - name: created
+    direction: desc
+
+- kind: Task
+  properties:
+  - name: author
+  - name: modified
+    direction: desc
+
+- kind: Task
+  properties:
+  - name: condition
+  - name: privacy
+  - name: created
+    direction: desc
+
+- kind: Task
+  properties:
+  - name: privacy
+  - name: created
+    direction: desc
+
+- kind: Task
+  properties:
+  - name: privacy
+  - name: modified
     direction: desc

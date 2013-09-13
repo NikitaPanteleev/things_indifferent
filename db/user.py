@@ -31,14 +31,21 @@ class User(db.Model):
     pw_hash = db.StringProperty(required = True)
     email = db.StringProperty()
     registered = db.DateTimeProperty(auto_now_add = True)
+    total_exp = db.IntegerProperty(default=0)
+    #a kind of achievment
+    mushrooms = db.ListProperty(int,default=[0])
+
+    def render(self):
+        profile_str = "/community/%s/profile"%(self.name)
+        blog_str = "/community/%s/blog"%(self.name)
+        html = """<a href = "%s"><span class="glyphicon glyphicon-user"> </span></a>
+                    <a href = "%s">%s</a>"""%(profile_str,blog_str,self.name)
+        return html
 
     @classmethod
     def by_id(cls, uid):
         return cls.get_by_id(uid, parent = users_key())
-    """@classmethod
-    def by_key(cls, key):
-        return cls.all().get_by_key_name(key, parent = users_key())
-    """
+   
     @classmethod
     def by_name(cls, name):
         u = cls.all().filter('name =', name).get()

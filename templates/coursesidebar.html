@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row-fluid">
+	<div class="span2">
+	{%if loginname%}
+	  <div class="well sidebar-nav">
+	    <ul class="nav nav-list">
+	      <li class="nav-header">My courses</li>
+	      {%set prefix10 = "/ftu/"+loginname+"/tasks?condition=10"%}
+	      {%set prefix5 = "/ftu/"+loginname+"/tasks?condition=5"%}
+	      {%set prefix1 = "/ftu/"+loginname+"/tasks?condition=1"%}
+	      {%set prefix0 = "/ftu/"+loginname+"/tasks?condition=0"%}
+	      {%set prefixall = "/ftu/"+loginname+"/tasks"%}
+
+	      <li><a href={{prefix10}}>Active</a></li>
+	      <li><a href={{prefix5}}>Frozen</a></li>
+	      <li><a href={{prefix1}}>Done</a></li>
+	      <li><a href={{prefix0}}>Failed</a></li>
+	      <li><a href={{prefixall}}>All my tasks</a></li>
+	      <li class="nav-header">New course</li>
+	      <li><a href="/ftu/newtask">Create new task</a></li>
+	      <li class="nav-header">Community&faq</li>
+	      <li><a href="/ftu/all/tasks">All tasks</a></li>
+	      <li><a href="/ftu/intro">Intro</a></li>
+	    </ul>
+	  </div><!--/.well -->
+	{%endif%}
+	</div><!--/span-->
+	{%block coursecontent%}
+	{%endblock%}
+	
+</div><!--/row-->
+
+{% endblock %}

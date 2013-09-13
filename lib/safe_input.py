@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""
+    Here the translation from user input to safe html must be provided,however it's not provided. The easiest
+    replacements are made just.
+"""
 import re
 
 def input_to_safe_html(content):
@@ -9,7 +13,7 @@ def input_to_safe_html(content):
     return content
 
 
-def input_to_extanded_safe_html (content):
+def input_to_extended_safe_html (content):
         content = input_to_safe_html(content)
         content = content.replace ('&ltb&gt','<b>')
         content = content.replace ('&lt/b&gt','</b>')

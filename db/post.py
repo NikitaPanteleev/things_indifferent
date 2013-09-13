@@ -12,7 +12,12 @@ class Post(db.Model):
     created = db.DateTimeProperty(auto_now_add = True)
     permanent_link = db.StringProperty()
     last_modified = db.DateTimeProperty(auto_now = True)
+    number_of_comments = db.IntegerProperty(default = 0)
 
+    @classmethod
+    def by_id(cls, uid):
+        return cls.get_by_id(uid, parent = blog_key())
+        
     def render(self):
         return render_str("post.html", p = self)
 

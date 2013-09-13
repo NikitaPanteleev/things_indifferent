@@ -1,14 +1,9 @@
 <div class="comment-heading">
-  <div class="comment-author">
-  	{%set profile = "/community/"+c.author.name+"/profile"%}
-    <a href = {{profile}}> {{c.author.name|safe}}</a>
-  </div>
-  <div class="comment-date">
-    {{c.created.strftime("%H:%M,%b %d, %Y")}}
-  </div>
-</div>
+  	{{c.author.render()|safe}}
+   <i>wrote at {{c.created.strftime("%H:%M,%b %d, %Y")}}</i>
+ </div>
 
 <div class="comment-content">
-  {{c.content|safe}}
+  <p>{{c.content|safe}}</p>
 </div>
 <br><br>

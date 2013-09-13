@@ -53,6 +53,7 @@ class BlogHandler(webapp2.RequestHandler):
         self.write(self.render_str(template,
                                  HeaderMenu = navigation.HeaderMenu,
                                  loginname = name,
+                                 style = '',
                                  **kw))
 
     def render_json(self, d):

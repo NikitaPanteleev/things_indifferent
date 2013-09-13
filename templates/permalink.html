@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+<div class="span6 offset3 white">
   <div class="post">
     {{p.render()|safe}}
   </div>
-  <p style = "color: #707000;border-top: 1px dotted #707000; font-size:1.5em;">Comments:</p>
+  <p style = "color: #707000;border-top: 1px dotted #707000; font-size:1.5em;"><a name = "comments">Comments ({{p.number_of_comments}}):</a></p>
   <br>
   <div class = "comment">
     {% for c in comments %}
@@ -14,10 +14,11 @@
   </div>
 
   <form method="post">
-    <div><strong>Add comment</strong></div>
-      <div><textarea name="comment" rows="5" class = "newpost-content">{{comment}}</textarea></div>
+    <div ><strong><a name = "add">Add comment</a></strong></div>
+      <div><textarea name="comment" rows="5"  id="#add">{{comment}}</textarea></div>
       <input type="submit" class="btn">
   </form>
   <br>
   <div class = "error">{{error}}</div>
+</div><!--/.span9 -->
 {% endblock %}

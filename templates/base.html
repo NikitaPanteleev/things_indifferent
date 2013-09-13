@@ -1,110 +1,138 @@
 <!DOCTYPE html>
-<!-- saved from url=(0060)http://getbootstrap.com/2.3.2/examples/starter-template.html -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- saved from url=(0068)http://alademann.github.io/sass-bootstrap/examples/navbar-fixed-top/ -->
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>{{title}}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <meta name="description" content="FTU framework for orginizing life circle and blog system for sharing personal thoughts">
+    <meta name="author" content="last_words">
+
+    <title>{{title}}</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/static/css/bootstrap.css" rel="stylesheet">
     <!-- Custom styles for this template -->
+    <link href="/static/css/bootstrap-responsive.css" rel="stylesheet">
     <link href="/static/css/thingsindifferent.css" rel="stylesheet">
-   
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-      <script src="../assets/js/html5shiv.js"></script>
+      <script src="http://alademann.github.io/sass-bootstrap/assets/js/html5shiv.js"></script>
+      <script src="http://alademann.github.io/sass-bootstrap/assets/js/respond/respond.min.js"></script>
     <![endif]-->
 
     <!-- Fav and touch icons -->
     <link rel="shortcut icon" type="image/x-icon" href="/static/img/reddragon_grey.png">
-  <style type="text/css"></style></head>
+  </head>
 
-  <body style = "">
-
-    <div class="navbar navbar-inverse navbar-fixed-top">
+  <body>
+    <div class="navbar navbar-fixed-top {{style}}">
       <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/">El Septiembre Lluvioso</a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
+        <a class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="navbar-brand {{style}}" href="/">Things indifferent</a>
+        
+        <div class="nav-collapse collapse ">
+          <ul class="nav">
+
+            <li class="dropdown">
+                  <a href="/#" class="dropdown-toggle {{style}}" data-toggle="dropdown">FTU framework <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                  {% if loginname %}
+                  {%set all_courses = "/ftu/"+loginname+"/tasks?condition=10"%}
+                    <li><a href={{all_courses}}>My current tasks</a></li>
+                    <li><a href="/ftu/newtask">Create new task</a></li>
+                    <li class="divider"></li>
+                  {%endif%}
+                  
+                  <li class="nav-header">General usage</li>
+                  <li><a href="/ftu/all/tasks">All courses</a></li>
+                  <li><a href="/ftu/intro">Intro to FTU</a></li>
+                </ul>
+              </li>
               {% for item in HeaderMenu %}
                 <!--<li {%if item [1] == ActiveHeaderItem%} class= "active" {%endif%}>-->
                 <li><a href="{{ item.href }}">{{ item.name|capitalize }}</a></li>
               {% endfor %}
-
-            </ul>
-          {% if loginname %}
-          <ul class="nav navbar-nav navbar-right">
-            {%set blog_url = "/community/"+loginname+"/blog"%}
-            <li><a href= {{blog_url}}> My blog</a></li>
-            <li><a href="/community/blog/newpost">New post</a></li>
-            {%set profile_url = "/community/"+loginname+"/profile"%}
-            <li><a href={{profile_url}}>{{loginname}}</a></li>
-            <li><a href= "/logout">Log out</a></li>
           </ul>
-
-          {% else %}
-          </form>
-           <form class="navbar-form navbar-right" action = "/signup" method = "get">
-              <button type="submit" class="btn btn-signup">Sign up</button>
-           </form>
-
-          <form class="navbar-form navbar-right" action = "/login" method="post">
-            <div class="form-group">
-              <input type="text" placeholder="Name" class="form-control" name = "signin_username" value = "{{signin_username}}">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control" name = "signin_password" value = "{{signin_password}}">
-            </div>
-
-            <button type="submit" class="btn btn-success" name = "auth" value = "signin">Sign in</button>
-          </form> 
           
-          {% endif %}
+            {% if loginname %}
+            <ul class="nav pull-right">
+              <li><a href={{all_courses}}>My current tasks</a></li>
+              {%set blog_url = "/community/"+loginname+"/blog"%}
+              <li><a href= {{blog_url}}> My blog</a></li>
+              <li><a href="/community/blog/newpost">New post</a></li>
+              {%set profile_url = "/community/"+loginname+"/profile"%}
+              <li><a href={{profile_url}}>{{loginname}}</a></li>
+              <li><a href= "/logout">Log out</a></li>
+            </ul>
+            {% else %}
+            <div style = "raw">
+              <form class="navbar-form pull-right" action = "/signup" method = "get">
+                <button type="submit" class="btn btn-primary btnmarkup">Sign up</button>
+              </form>
+              
+              <form class="navbar-form pull-right" action = "/login" method="post">
+                <input type="text" placeholder="Name" class="form-control" name = "signin_username" value = "{{signin_username}}">
+                <input type="password" placeholder="Password" class="form-control" name = "signin_password" value = "{{signin_password}}">
+                <button type="submit" class="btn btn-success">Sign in</button>
+              </form>
+            </div>
 
-        </div><!--/.navbar-collapse -->
+
+            
+          {% endif %}
+        </div><!--/.nav-collapse -->
       </div>
     </div>
 
-    <div class="container">
-    	{%block content%}
-    	{%endblock%}
+
+
+
+    <div class="container-fluid">
       {%if simple_text%}
-      <h2> {{simple_text}} </h2>
-      {% endif %}
-      {%if error_text%}
-      <div class = "error">
-      <h2> {{error_text}} </h2>
+      <div class="span9 offset3">
+        <h2> {{simple_text}} </h2>
+        
       </div>
       {% endif %}
+      {%if error%}
+      <div class="span9 offset3 white">
+        <div class = "error">
+          <h2> {{error}} </h2>
+        </div>
+      </div>
+      {% endif %}
+    	
+      {%block content%}
+    	{%endblock%}
+      
 
     </div> <!-- /container -->
 
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="./Bootstrap, from Twitter_files/jquery.js"></script>
-    <script src="./Bootstrap, from Twitter_files/bootstrap-transition.js"></script>
-    <script src="./Bootstrap, from Twitter_files/bootstrap-alert.js"></script>
-    <script src="./Bootstrap, from Twitter_files/bootstrap-modal.js"></script>
-    <script src="./Bootstrap, from Twitter_files/bootstrap-dropdown.js"></script>
-    <script src="./Bootstrap, from Twitter_files/bootstrap-scrollspy.js"></script>
-    <script src="./Bootstrap, from Twitter_files/bootstrap-tab.js"></script>
-    <script src="./Bootstrap, from Twitter_files/bootstrap-tooltip.js"></script>
-    <script src="./Bootstrap, from Twitter_files/bootstrap-popover.js"></script>
-    <script src="./Bootstrap, from Twitter_files/bootstrap-button.js"></script>
-    <script src="./Bootstrap, from Twitter_files/bootstrap-collapse.js"></script>
-    <script src="./Bootstrap, from Twitter_files/bootstrap-carousel.js"></script>
-    <script src="./Bootstrap, from Twitter_files/bootstrap-typeahead.js"></script>
-
-  
+    <!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/bootstrap-dropdown.js"></script>
+<script src="/static/js/bootstrap-scrollspy.js"></script>
+<!--
+<script src="/static/js/bootstrap-transition.js"></script>
+<script src="/static/js/bootstrap-alert.js"></script>
+<script src="/static/js/bootstrap-modal.js"></script>
+<script src="/static/js/bootstrap-tab.js"></script>
+<script src="/static/js/bootstrap-tooltip.js"></script>
+<script src="/static/js/bootstrap-popover.js"></script>
+<script src="/static/js/bootstrap-button.js"></script>
+<script src="/static/js/bootstrap-collapse.js"></script>
+<script src="/static/js/bootstrap-carousel.js"></script>
+<script src="/static/js/bootstrap-typeahead.js"></script>
+<script src="/static/js/bootstrap-affix.js"></script>
+<script src="/static/js/holder.js"></script>
+<script src="/static/js/application.js"></script>
+ --> 
 
 </body></html>

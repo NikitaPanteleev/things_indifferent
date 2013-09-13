@@ -1,0 +1,8 @@
+<div class="span9">
+	<h1>{{c.title}}</h1>
+	<br>	
+    <p>{{c.description}} </p>
+    <p>Created by {{c.author.name}} at {{c.created.strftime("%b %d, %Y")}}</p>
+   	<p>Here we test</p>
+    {{c.display_privacy()|safe}}
+</div><!--/span-->

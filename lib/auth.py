@@ -10,7 +10,7 @@ import db.user as db_user
 
 USER_RE = re.compile(r"^[a-zA-Z0-9_-]{3,20}$")
 def valid_username(username):
-    return username and USER_RE.match(username) and (len(username) <10)
+    return username and USER_RE.match(username) and (len(username) <10) and (username!='all')
 
 PASS_RE = re.compile(r"^.{3,20}$")
 def valid_password(password):

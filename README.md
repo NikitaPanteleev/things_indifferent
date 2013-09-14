@@ -1,7 +1,7 @@
 things_indifferent
 ==================
 
-Things indifferent web project. A web constructor of courses with a little bit stoicism. This is my first project in web-development, so don't be too rigorous that, pls.
+Things indifferent web project. A web constructor of courses with a little bit stoicism. This is my first project in web-development, so don't be too rigorous about that, pls.
 
 The supported features:
 + user registration
@@ -13,7 +13,7 @@ So it means that it's a not serious project but a prototype of future full versi
 
 Shortcomings:
 - bad structure of code, some classes should be reorganised
-- the user's input is not safe (though all they can do is to not close <b><i> - the only two tags are allowed)
+- the user's input is not safe (though all they can do is to not close  b and i tags - the only two tags are allowed)
 - the site is vulnerable to cross-site scripting
 
 Thanks

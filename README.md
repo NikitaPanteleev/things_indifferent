@@ -28,4 +28,6 @@ Use google app engine to run this project.
 - write in console: python ./dev_appserver.py things_indifferent/
 - open http://localhost:8080/ in your browser
 
+Check working version here: http://things-indifferent.appspot.com/
+
 

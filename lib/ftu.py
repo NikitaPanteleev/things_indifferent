@@ -130,6 +130,8 @@ class TaskEdit(bloghandler.BlogHandler):
             if self.user.name != task.author.name:
                 self.render('base.html', error = "You can update only your tasks!",
                                      title = "Error",)
+                return
+
 
             if condition == "finish" and treal:
                 #expirience
@@ -148,6 +150,10 @@ class TaskEdit(bloghandler.BlogHandler):
                 if mushroom == 13:
                     self.user.mushrooms.append(1)
                 self.user.total_exp += exp
+                self.user.time_spent +=task.real_time
+                print task.real_time
+                print self.user.time_spent
+                print "\n\n\n"
                 self.user.put()
             elif condition == "freeze":
                 task.condition = 5

@@ -34,6 +34,7 @@ class User(db.Model):
     total_exp = db.IntegerProperty(default=0)
     #a kind of achievment
     mushrooms = db.ListProperty(int,default=[0])
+    time_spent = db.IntegerProperty(default = 0)
 
     def render(self):
         profile_str = "/community/%s/profile"%(self.name)

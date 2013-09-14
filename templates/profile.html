@@ -12,7 +12,10 @@
     {%for m in req_user.mushrooms%}
     	<img src="/static/img/mushroom.png" alt="mushroom">
     {%endfor%}
-</h2></p>
+  </h2></p>
+  <p><h2><small>Time spent:</small> {{req_user.time_spent}}<small> mins</small>  = {{req_user.time_spent//60}}<small> h </small>
+    {{req_user.time_spent%60}}
+    <small> mins</small></h2></p>
   </div>
   <br><br><br>
   

@@ -23,9 +23,9 @@ Thanks
 - Steve Huffman
 
 Use google app engine to run this project.
-1) Download Google App Engine SDK
-2) copy this folder to GAE folder
-3) write in console: python ./dev_appserver.py things_indifferent/
-4) open http://localhost:8080/ in your browser
+- Download Google App Engine SDK
+- copy this folder to GAE folder
+- write in console: python ./dev_appserver.py things_indifferent/
+- open http://localhost:8080/ in your browser
 
 
